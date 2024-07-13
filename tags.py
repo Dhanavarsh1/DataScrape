@@ -25,7 +25,7 @@ async def main(tag_name, count):
         await api.create_sessions()
         tag = api.hashtag(name=tag_name)
         async for vid in tag.videos(count=count):
-            vid_dict = await vid.as_dict
+            vid_dict = vid.as_dict
             nickname = vid_dict['author']['nickname']
             nicknames.append(nickname)
     
