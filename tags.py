@@ -31,7 +31,7 @@ async def main(tag_name, count):
             author_stats = vid_dict['authorStats']
             data.append({
                 "Nickname": author['nickname'],
-                "Verified": author['verified']
+                "Verified": author['verified'],
                 "Follower Count": author_stats['followerCount'],
                 "Following Count": author_stats['followingCount'],
                 "Heart Count": author_stats['heartCount'],
