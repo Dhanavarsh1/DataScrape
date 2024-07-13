@@ -27,10 +27,9 @@ async def main(tag_name, count):
         tag = api.hashtag(name=tag_name)
         async for vid in tag.videos(count=count):
             vid_dict = vid.as_dict
-            nickname = vid_dict['author']['nickname']
             author_stats = vid_dict['authorStats']
             data.append({
-                "Nickname": 'nickname',
+                "Nickname": author['nickname'],
                 "Digg Count": author_stats['diggCount'],
                 "Follower Count": author_stats['followerCount'],
                 "Following Count": author_stats['followingCount'],
