@@ -18,17 +18,29 @@ cookies = get_cookies_from_file()
 def get_cookies(**kwargs):
     return cookies
 
+
 async def main(tag_name, count):
+    data = []
     async with TikTokApi() as api:
         api._get_cookies = get_cookies
         await api.create_sessions()
         tag = api.hashtag(name=tag_name)
         async for vid in tag.videos(count=count):
-            print(vid)
-            print(vid.author[nickname])
-            print(vid.authorStats)
-            print(
-        print()
+            vid_dict = vid.as_dict
+            nickname = vid_dict['author']['nickname']
+            author_stats = vid_dict['authorStats']
+            data.append({
+                "Nickname": 'nickname',
+                "Digg Count": author_stats['diggCount'],
+                "Follower Count": author_stats['followerCount'],
+                "Following Count": author_stats['followingCount'],
+                "Heart Count": author_stats['heartCount'],
+                "Video Count": author_stats['videoCount']
+            })
+    
+    # Create a DataFrame from the data list
+    df = pd.DataFrame(data)
+    print(df)
 
 if __name__ == "__main__":
     asyncio.run(main(tag_name="funny", count=20))
