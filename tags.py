@@ -27,6 +27,7 @@ async def main(tag_name, count):
         tag = api.hashtag(name=tag_name)
         async for vid in tag.videos(count=count):
             vid_dict = vid.as_dict
+            author = vid_dict['author']
             author_stats = vid_dict['authorStats']
             data.append({
                 "Nickname": author['nickname'],
