@@ -1,6 +1,7 @@
 from TikTokApi import TikTokApi
 import json
 import asyncio
+import pandas as pd
 
 def get_cookies_from_file():
     with open('cookies.json') as f:
@@ -24,9 +25,9 @@ async def main(tag_name, count):
         tag = api.hashtag(name=tag_name)
         async for vid in tag.videos(count=count):
             print(vid)
-            print(vid.as_dict)
+            print(vid.author[nickname])
             print(vid.authorStats)
-            print('--------------')
+            print(
         print()
 
 if __name__ == "__main__":
